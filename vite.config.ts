@@ -2,7 +2,6 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import dts from 'vite-plugin-dts'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
 
 const rootDirName = resolve(__dirname, 'packages/vect-ui')
@@ -43,7 +42,6 @@ export default defineConfig({
           preserveModules: false,
           entryFileNames: 'index.mjs',
           chunkFileNames: '[name].mjs',
-          assetFileNames: '[name].[ext]',
           // 自定义chunk文件目录,文件名
           manualChunks(id) {
             if (id.includes('node_modules')) {
@@ -72,7 +70,6 @@ export default defineConfig({
           preserveModules: false,
           entryFileNames: 'index.js',
           chunkFileNames: '[name].js',
-          assetFileNames: '[name].[ext]',
           // 自定义chunk文件目录,文件名
           manualChunks(id) {
             if (id.includes('node_modules')) {

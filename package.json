@@ -1,23 +1,22 @@
 {
   "name": "@vect-ui/mother",
   "packageManager": "pnpm@7.16.1",
-  "version": "1.0.0",
   "description": "mother of vect-ui library modules",
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
-    "init": "pnpm i",
-    "clean": "rimraf ./node_modules",
-    "format": "prettier --write --cache .",
+    "clean": "rimraf node_modules **/*/node_modules",
+    "check:ts": "vue-tsc -p tsconfig.main.json --noEmit",
+    "lint:fix": "eslint . --fix",
     "commit": "git add . && npx git-cz",
-    "dev:play": "pnpm -C playground dev",
-    "dev:docs": "cd ./docs && pnpm run docs:dev",
-    "build": "rimraf ./packages/vect-ui/dist && pnpm run build:icons && vite build && pnpm run build:css && pnpm run build:dts",
+    "dev:docs": "pnpm --dir docs docs:dev",
+    "dev:play": "pnpm --dir playground dev",
+    "build": "rimraf ./packages/vect-ui/dist && vite build && pnpm run build:css && pnpm run build:dts",
     "build:dts": "node ./build/build-dts.mjs",
     "build:css": "vite build --config vite.css.config.ts",
-    "build:icons": "rimraf ./packages/icons/dist && vite build --config vite.icons.config.ts",
-    "build:docs": "cd ./docs && pnpm run docs:build",
-    "check:ts": "vue-tsc -p tsconfig.main.json --noEmit"
+    "build:docs": "pnpm --dir docs docs:build",
+    "prepublishOnly": "pnpm run lint:fix && pnpm run build",
+    "release": "bumpp && npm publish"
   },
   "keywords": [],
   "author": "",
@@ -25,9 +24,10 @@
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
-    "@vect-ui/eslint-config": "workspace:^1.0.0",
+    "@vect-ui/eslint-config": "workspace:^0.0.1",
     "@vitejs/plugin-vue": "^3",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
+    "bumpp": "^8.2.1",
     "commitizen": "^4.2.5",
     "commitlint": "^17.2.0",
     "commitlint-config-cz": "^0.13.3",
@@ -56,6 +56,6 @@
     }
   },
   "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
+    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint . --fix"
   }
 }

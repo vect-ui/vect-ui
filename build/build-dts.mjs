@@ -15,8 +15,8 @@ const rewrite = async dirName => {
   let _files = await fs.readdir(dirName, {
     recursive: true
   })
-  return await Promise.all([
-    ..._files.map(async file => {
+  return await Promise.all(
+    _files.map(async file => {
       const newFile = resolve(dirName, file)
       const status = await fs.stat(newFile)
       if (status.isFile()) {
@@ -25,15 +25,10 @@ const rewrite = async dirName => {
         await rewrite(newFile)
       }
     })
-  ])
+  )
 }
 
 const genDtsByVueTsc = async () => {
-  // 生成dts
-  // await execa('rimraf', ['./packages/vect-ui/dist/types'], {
-  //   cwd: rootDir
-  // })
-
   // 生成dts
   await execa(
     'vue-tsc',
@@ -43,14 +38,9 @@ const genDtsByVueTsc = async () => {
     }
   )
 
-  // 删除编译产生的icons
-  await fs.rm(resolve(outDir, 'packages/icons'), {
-    recursive: true
-  })
-
   await rewrite(outDir)
 
-  transform()
+  await transform()
 }
 
 const transform = async () => {
@@ -61,13 +51,11 @@ const transform = async () => {
     recursive: true
   })
 
-  await Promise.all([
-    ...dir.map(async file => {
+  await Promise.all(
+    dir.map(async file => {
       fs.copyFile(resolve(fromDir, file), resolve(toDir, file))
     })
-  ])
-
-  await fs.rm(fromDir, { recursive: true })
+  )
 }
 
 genDtsByVueTsc()
