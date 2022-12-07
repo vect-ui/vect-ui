@@ -1,0 +1,73 @@
+// Link
+@link-default-color: @v-text-color-regular;
+@link-default-color--hover: @v-color-primary-light-3;
+@link-default-color--active: @v-color-primary-dark-2;
+
+@link-primary-color: @v-color-primary;
+@link-primary-color--hover: @v-color-primary-light-3;
+@link-primary-color--active: @v-color-primary-dark-2;
+
+@link-warning-color: @v-color-warning;
+@link-warning-color--hover: @v-color-warning-light-3;
+@link-warning-color--active: @v-color-warning-dark-2;
+
+@link-danger-color: @v-color-danger;
+@link-danger-color--hover: @v-color-danger-light-3;
+@link-danger-color--active: @v-color-danger-dark-2;
+
+.v-link {
+  display: inline-flex;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: @v-font-size-base;
+  font-weight: @v-font-weight-primary;
+
+  &:hover::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0;
+    bottom: 0;
+    border-bottom: 1px solid var(--v-link-hover-color);
+  }
+}
+
+.link-factory(@color; @hoverColor; @activeColor) {
+  color: @color;
+
+  &:hover {
+    color: @hoverColor;
+  }
+
+  &:active {
+    color: @activeColor;
+  }
+}
+
+.v-link--default {
+  .link-factory(@link-default-color; @link-default-color--hover; @link-default-color--active);
+}
+
+.v-link--primary {
+  .link-factory(@link-primary-color; @link-primary-color--hover; @link-primary-color--active);
+}
+
+.v-link--warning {
+  .link-factory(@link-warning-color; @link-warning-color--hover; @link-warning-color--active);
+  --v-link-hover-color: @link-warning-color--hover;
+}
+
+.v-link--danger {
+  .link-factory(@link-danger-color; @link-danger-color--hover; @link-danger-color--active);
+  --v-link-hover-color: @link-danger-color--hover;
+}
+
+.v-link + .v-link {
+  margin-left: 16px;
+}

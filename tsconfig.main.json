@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "preserve",
+    "lib": ["DOM", "DOM.Iterable", "ES2021"],
+    "types": [],
+    "skipLibCheck": true,
+    "outDir": "packages/vect-ui/dist/types"
+  },
+  "include": ["packages", "types/*.d.ts", "**/dist"],
+  "exclude": ["node_modules", "packages/**/*.d.ts"]
+}

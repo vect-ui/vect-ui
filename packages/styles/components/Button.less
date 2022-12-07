@@ -1,0 +1,123 @@
+// Button
+@btn-size-small: 24px;
+@btn-size-medium: 32px;
+@btn-size-large: 40px;
+
+@btn-default-color: @v-text-color-regular;
+@btn-default-bg: @v-bg-color;
+@btn-default-border: @v-border-color;
+@btn-default-bg--hover: rgba(0, 0, 0, 0.08);
+@btn-default-bg--active: rgba(0, 0, 0, 0.03);
+
+@btn-primary-color: @v-color-white;
+@btn-primary-bg: @v-color-primary;
+@btn-primary-border: @v-color-primary;
+@btn-primary-bg--hover: @v-color-primary-light-3;
+@btn-primary-bg--active: @v-color-primary-dark-2;
+
+@btn-warning-color: @v-color-white;
+@btn-warning-bg: @v-color-warning;
+@btn-warning-border: @v-color-warning;
+@btn-warning-bg--hover: @v-color-warning-light-3;
+@btn-warning-bg--active: @v-color-warning-dark-2;
+
+@btn-danger-color: @v-color-white;
+@btn-danger-bg: @v-color-danger;
+@btn-danger-border: @v-color-danger;
+@btn-danger-bg--hover: @v-color-danger-light-3;
+@btn-danger-bg--active: @v-color-danger-dark-2;
+
+.btn-color(@color, @bgColor, @border) {
+  color: @color;
+  border-color: @border;
+  background-color: @bgColor;
+}
+
+.btn-factory(@color; @bgColor; @border; @hoverBgColor; @activeBgColor) {
+  .btn-color(@color, @bgColor, @border);
+
+  &:hover,
+  &:focus {
+    border-color: @hoverBgColor;
+    background-color: @hoverBgColor;
+  }
+
+  &:active {
+    border-color: @hoverBgColor;
+    background-color: @activeBgColor;
+  }
+
+  &:disabled {
+    border-color: @border;
+    background-color: @bgColor;
+  }
+}
+
+.v-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: @btn-size-medium;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.1s;
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  padding: 3px 15px;
+  font-family: @v-font-family;
+  font-weight: @v-font-weight-primary;
+  border: @v-border;
+  font-size: @v-font-size-base;
+  border-radius: @v-border-radius-base;
+}
+
+.v-button--default {
+  .btn-factory(@btn-default-color;
+    @btn-default-bg;
+    @btn-default-border;
+    @btn-default-bg--hover;
+    @btn-default-bg--active );
+}
+
+.v-button--primary {
+  .btn-factory(@btn-primary-color;
+    @btn-primary-bg;
+    @btn-primary-border;
+    @btn-primary-bg--hover;
+    @btn-primary-bg--active);
+}
+
+.v-button--danger {
+  .btn-factory(@btn-danger-color;
+    @btn-danger-bg;
+    @btn-danger-border;
+    @btn-danger-bg--hover;
+    @btn-danger-bg--active);
+}
+
+.v-button--warning {
+  .btn-factory(@btn-warning-color;
+    @btn-warning-bg;
+    @btn-warning-border;
+    @btn-warning-bg--hover;
+    @btn-warning-bg--active);
+}
+
+.v-button + .v-button {
+  margin-left: 16px;
+}
+
+.v-button--small {
+  height: @btn-size-small;
+  font-size: @v-font-size-extra-small;
+}
+
+.v-button--large {
+  height: @btn-size-large;
+  font-size: @v-font-size-large;
+}

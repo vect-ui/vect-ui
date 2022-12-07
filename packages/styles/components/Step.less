@@ -1,0 +1,121 @@
+.v-step {
+  position: relative;
+  flex-shrink: 1;
+
+  &:last-of-type {
+    .v-step__line {
+      display: none;
+    }
+  }
+
+  &__head {
+    position: relative;
+    width: 100%;
+    text-align: center;
+
+    &.is-wait {
+      color: @v-text-color-placeholder;
+      border-color: @v-text-color-placeholder;
+    }
+
+    &.is-process {
+      color: @v-text-color-primary;
+      border-color: @v-text-color-primary;
+    }
+
+    &.is-success {
+      color: @v-color-success;
+      border-color: @v-color-success;
+    }
+
+    &.is-error {
+      color: @v-color-danger;
+      border-color: @v-color-danger;
+    }
+
+    &.is-finish {
+      color: @v-color-primary;
+      border-color: @v-color-primary;
+    }
+  }
+
+  &__line {
+    height: 2px;
+    position: absolute;
+    background-color: @v-text-color-placeholder;
+    top: 11px;
+    left: 50%;
+    right: -50%;
+
+    &-inner {
+      height: 0;
+      border: 0px solid inherit;
+      display: block;
+      text-align: center;
+      transition: 0.15s ease-out;
+    }
+  }
+
+  &__icon {
+    &.is-text {
+      border-radius: 50%;
+      border: 2px solid;
+      border-color: inherit;
+    }
+
+    height: 24px;
+    width: 24px;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: @v-bg-color;
+    z-index: 1;
+    position: relative;
+
+    &-inner {
+      user-select: none;
+      line-height: 1;
+      font-weight: 700;
+
+      &.is-status {
+        transform: translateX(-1px);
+      }
+    }
+  }
+
+  &__main {
+    text-align: center;
+    white-space: normal;
+
+    &.is-wait {
+      color: @v-text-color-placeholder;
+    }
+    &.is-process {
+      color: @v-text-color-primary;
+    }
+
+    &.is-success {
+      color: @v-color-success;
+    }
+
+    &.is-error {
+      color: @v-color-danger;
+    }
+
+    &.is-finish {
+      color: @v-color-primary;
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  &__description {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400;
+  }
+}

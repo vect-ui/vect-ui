@@ -1,0 +1,51 @@
+:root {
+  --vp-c-bg-alt: #fff; // 侧边栏
+}
+.dark {
+  --vp-c-bg-alt: #242424; // 深色模式侧边栏
+}
+
+// 竖向滚动条
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+// 横向滚动条
+::-webkit-scrollbar:horizontal {
+  height: 7px;
+}
+
+// 滚动滑块
+::-webkit-scrollbar-thumb {
+  background: #0003;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.vp-doc {
+  th,
+  tr,
+  td {
+    border: none;
+    background: none;
+  }
+  tr:nth-child(2n) {
+    background: none;
+  }
+}
+
+.vp-table__wrapper {
+  width: 100%;
+
+  table {
+    width: 100%;
+    display: inline-table;
+  }
+
+  td,
+  th {
+    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+  }
+}

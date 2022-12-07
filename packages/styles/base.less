@@ -1,0 +1,27 @@
+.is-round {
+  border-radius: @v-border-radius-round;
+}
+
+.is-circle {
+  border-radius: @v-border-radius-circle;
+  padding: 8px;
+}
+
+.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.is-loading {
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

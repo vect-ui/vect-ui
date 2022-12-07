@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "types": [],
+    "skipLibCheck": true
+  },
+  "include": ["packages", "types/*.d.ts", "playground"],
+  "exclude": ["node_modules"]
+}

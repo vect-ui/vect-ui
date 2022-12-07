@@ -1,0 +1,21 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev src",
+    "docs:build": "vitepress build src",
+    "docs:serve": "vitepress serve src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vect-ui": "0.0.1-alpha-init3",
+    "@vect-ui/repl": "workspace:^1.0.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-container": "^3.0.0",
+    "vitepress": "1.0.0-alpha.29"
+  }
+}

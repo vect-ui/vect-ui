@@ -1,0 +1,15 @@
+{
+  "name": "@vect-ui/styles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.less",
+  "style": "index.less",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

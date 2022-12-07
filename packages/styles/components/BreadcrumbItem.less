@@ -1,0 +1,28 @@
+.v-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+
+  &__label {
+    color: @v-text-color-secondary;
+
+    &.is-link {
+      cursor: pointer;
+      &:hover {
+        color: @v-color-primary;
+      }
+    }
+
+    &.is-current {
+      font-weight: 700;
+      color: @v-text-color-primary;
+    }
+  }
+  &__separator {
+    margin: 0 9px;
+    font-weight: 700;
+    color: @v-text-color-regular;
+  }
+  &:last-child &__separator {
+    display: none;
+  }
+}
