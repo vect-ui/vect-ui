@@ -1,0 +1,120 @@
+.v-checkbox {
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  margin-right: 30px;
+  user-select: none;
+  white-space: nowrap;
+  font-size: @v-font-size-base;
+  font-weight: @v-font-weight-primary;
+  height: 32px;
+
+  &__input {
+    display: inline-flex;
+  }
+
+  &__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    height: 0;
+    width: 0;
+    margin: 0;
+    z-index: -1;
+  }
+
+  &__inner {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    border: @v-border;
+    border-radius: @v-border-radius-small;
+    height: 14px;
+    width: 14px;
+    transition: border-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      background-color 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46),
+      outline 0.25s cubic-bezier(0.71, -0.46, 0.29, 1.46);
+
+    &.is-checked,
+    &.is-indeterminate {
+      background-color: @v-color-primary;
+      border-color: @v-color-primary;
+    }
+
+    &.is-checked:not(.is-indeterminate) {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 1px;
+        left: 4px;
+        height: 7px;
+        width: 3px;
+        border: 1px solid @v-bg-color;
+        border-left: 0;
+        border-top: 0;
+        transform: rotate(45deg) scaleY(1);
+        transition: transform 0.15s ease-in 0.05s;
+      }
+      &.is-disabled::after {
+        border-color: @v-text-color-placeholder;
+      }
+    }
+
+    &.is-disabled {
+      background-color: @v-disabled-bg-color;
+      border-color: @v-disabled-border-color;
+      cursor: not-allowed;
+    }
+
+    &.is-indeterminate {
+      &::before {
+        content: '';
+        background-color: @v-bg-color;
+        position: absolute;
+        height: 2px;
+        transform: scale(0.5);
+        left: 0;
+        right: 0;
+        top: 5px;
+      }
+      &.is-disabled::before {
+        background-color: @v-text-color-placeholder;
+      }
+    }
+
+    &:not(.is-disabled):hover {
+      border-color: @v-color-primary;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    line-height: 1;
+    padding-left: 8px;
+    font-weight: @v-font-weight-primary;
+    font-size: @v-font-size-base;
+    transition: color 0.15s ease-in 0.05s;
+
+    &.is-checked {
+      color: @v-color-primary;
+    }
+
+    &.is-disabled {
+      cursor: not-allowed;
+      color: @v-disabled-text-color;
+    }
+  }
+
+  &--large {
+    height: 40px;
+  }
+
+  &--small {
+    height: 24px;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}

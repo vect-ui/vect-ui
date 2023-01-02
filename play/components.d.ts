@@ -11,6 +11,8 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     VButton: typeof import('vect-ui')['VButton']
     VIcon: typeof import('vect-ui')['VIcon']
+    VCheckbox: typeof import('vect-ui')['VCheckbox']
+    VCheckBox: typeof import('vect-ui')['VCheckBox']
     VStep: typeof import('vect-ui')['VStep']
     VSteps: typeof import('vect-ui')['VSteps']
   }

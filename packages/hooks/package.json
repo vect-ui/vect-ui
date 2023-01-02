@@ -1,0 +1,6 @@
+{
+  "name": "@vect-ui/hooks",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts"
+}
