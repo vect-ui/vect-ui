@@ -1,9 +1,11 @@
 {
+  "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false
+    "source.fixAll": false
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "npm.packageManager": "pnpm",
   "eslint.probe": [
     "javascript",
     "javascriptreact",
@@ -15,6 +17,15 @@
     "json",
     "jsonc"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "npm.packageManager": "pnpm"
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue",
+    "markdown",
+    "json",
+    "jsonc"
+  ]
 }

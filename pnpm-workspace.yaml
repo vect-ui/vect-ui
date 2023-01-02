@@ -1,6 +1,7 @@
 packages:
   - packages/*
+  - internal/*
   - playground
   - docs
-  - plugin/*
   - repl
+  - play
