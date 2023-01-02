@@ -1,6 +1,6 @@
 {
   "name": "@vect-ui/styles",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.less",
   "style": "index.less",
@@ -8,8 +8,5 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
