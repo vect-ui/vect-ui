@@ -6,6 +6,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "npm.packageManager": "pnpm",
+  "eslint.packageManager": "pnpm",
   "eslint.probe": [
     "javascript",
     "javascriptreact",
@@ -27,5 +28,6 @@
     "markdown",
     "json",
     "jsonc"
-  ]
+  ],
+  "cSpell.words": ["vect"]
 }

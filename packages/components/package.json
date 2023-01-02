@@ -1,19 +1,11 @@
 {
   "name": "@vect-ui/components",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "version": "0.0.1",
+  "description": "all components",
+  "license": "MIT",
   "main": "index.ts",
   "module": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "peerDependencies": {
     "vue": "^3.2.0"
-  },
-  "devDependencies": {
-    "@vect-ui/icons": "0.0.2-beta.0"
   }
 }

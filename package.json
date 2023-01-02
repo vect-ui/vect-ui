@@ -1,9 +1,9 @@
 {
-  "name": "@vect-ui/mother",
+  "private": true,
   "packageManager": "pnpm@7.16.1",
   "description": "mother of vect-ui library modules",
   "keywords": [],
-  "license": "ISC",
+  "license": "MIT",
   "author": "",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "@vect-ui/components": "workspace:*",
-    "@vect-ui/icons": "0.0.2-beta.0"
+    "@vect-ui/icons": "0.0.2-beta.0",
+    "@vect-ui/styles": "workspace:*",
+    "@vect-ui/utils": "workspace:*"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
