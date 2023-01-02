@@ -2,6 +2,9 @@
   "name": "@vect-ui/mother",
   "packageManager": "pnpm@7.16.1",
   "description": "mother of vect-ui library modules",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
@@ -9,6 +12,7 @@
     "check:ts": "vue-tsc -p tsconfig.main.json --noEmit",
     "lint:fix": "eslint . --fix",
     "commit": "git add . && npx git-cz",
+    "dev": "pnpm -C play dev",
     "dev:docs": "pnpm --dir docs docs:dev",
     "dev:play": "pnpm --dir playground dev",
     "build": "rimraf ./packages/vect-ui/dist && vite build && pnpm run build:css && pnpm run build:dts",
@@ -18,13 +22,14 @@
     "prepublishOnly": "pnpm run lint:fix && pnpm run build",
     "release": "bumpp && npm publish"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "@vect-ui/components": "workspace:*",
+    "@vect-ui/icons": "0.0.2-beta.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
-    "@vect-ui/eslint-config": "workspace:^0.0.1",
+    "@vect-ui/eslint-config": "workspace:*",
     "@vitejs/plugin-vue": "^3",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "bumpp": "^8.2.1",
