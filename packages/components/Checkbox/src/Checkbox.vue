@@ -1,7 +1,13 @@
 <template>
   <label :class="compCls">
     <span :class="ns.e('input')">
-      <input v-model="model" type="checkbox" :class="ns.e('original')" :disabled="isDisabled" />
+      <input
+        v-model="model"
+        type="checkbox"
+        :class="ns.e('original')"
+        :disabled="isDisabled"
+        @change="handleChange"
+      />
       <span :class="innerCls" />
     </span>
     <span v-if="hasOwnLabel" :class="labelCls">
@@ -22,7 +28,10 @@
   const slots = useSlots()
 
   const ns = useNamespace('checkbox')
-  const { hasOwnLabel, model, checkboxSize, isDisabled, isChecked } = useCheckbox(props, slots)
+  const { hasOwnLabel, model, checkboxSize, isDisabled, isChecked, handleChange } = useCheckbox(
+    props,
+    slots
+  )
 
   const compCls = computed(() => [ns.b(), ns.m(checkboxSize.value)])
   const innerCls = computed(() => [

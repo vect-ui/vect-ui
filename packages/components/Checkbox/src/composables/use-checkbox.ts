@@ -1,9 +1,10 @@
-import { computed, getCurrentInstance, ref } from 'vue'
-import { UPDATE_MODEL_EVENT } from '@vect-ui/constants'
+import { isArray } from '@vect-ui/utils'
+import { useCheckboxModel } from './use-checkbox-model'
+import { useCheckboxStatus } from './use-checkbox-status'
+import { useCheckboxEvent } from './use-checkbox-event'
+
 import type { ComponentInternalInstance, WritableComputedRef } from 'vue'
 import type { CheckboxProps } from '../checkbox'
-import { useDisabed, useSize } from '@vect-ui/hooks'
-import { isArray, isBoolean } from '@vect-ui/utils'
 
 const setDefaultValue = (props: CheckboxProps, model: WritableComputedRef<unknown>) => {
   function setVal() {
@@ -17,30 +18,11 @@ const setDefaultValue = (props: CheckboxProps, model: WritableComputedRef<unknow
 }
 
 export const useCheckbox = (props: CheckboxProps, slots: ComponentInternalInstance['slots']) => {
-  const hasOwnLabel = computed(() => !!(slots.default || props.label))
-  const { emit } = getCurrentInstance()!
-
-  const innerModelValue = ref<unknown>(false)
-  const model = computed<any>({
-    get() {
-      return props.modelValue ?? innerModelValue.value
-    },
-    set(val: unknown) {
-      emit(UPDATE_MODEL_EVENT, val)
-      innerModelValue.value = val
-    }
+  const { model } = useCheckboxModel(props)
+  const { isChecked, isDisabled, checkboxSize, hasOwnLabel } = useCheckboxStatus(props, slots, {
+    model
   })
-
-  const checkboxSize = useSize()
-  const isDisabled = useDisabed()
-  const isChecked = computed(() => {
-    const val = model.value
-    if (isBoolean(val)) {
-      return val
-    } else {
-      return !!val
-    }
-  })
+  const { handleChange } = useCheckboxEvent()
 
   setDefaultValue(props, model)
 
@@ -49,6 +31,7 @@ export const useCheckbox = (props: CheckboxProps, slots: ComponentInternalInstan
     isDisabled,
     isChecked,
     checkboxSize,
-    hasOwnLabel
+    hasOwnLabel,
+    handleChange
   }
 }
