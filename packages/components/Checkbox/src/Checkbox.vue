@@ -1,6 +1,6 @@
 <template>
   <label :class="compCls">
-    <span :class="ns.e('input')">
+    <span :class="spanCls">
       <input
         v-model="model"
         type="checkbox"
@@ -8,9 +8,9 @@
         :disabled="isDisabled"
         @change="handleChange"
       />
-      <span :class="innerCls" />
+      <span :class="ns.e('inner')" />
     </span>
-    <span v-if="hasOwnLabel" :class="labelCls">
+    <span v-if="hasOwnLabel" :class="ns.e('label')">
       <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
@@ -34,14 +34,8 @@
   )
 
   const compCls = computed(() => [ns.b(), ns.m(checkboxSize.value)])
-  const innerCls = computed(() => [
-    ns.e('inner'),
-    ns.is('checked', isChecked.value),
-    ns.is('indeterminate', props.indeterminate),
-    ns.is('disabled', isDisabled.value)
-  ])
-  const labelCls = computed(() => [
-    ns.e('label'),
+  const spanCls = computed(() => [
+    ns.e('input'),
     ns.is('checked', isChecked.value),
     ns.is('indeterminate', props.indeterminate),
     ns.is('disabled', isDisabled.value)
