@@ -136,10 +136,38 @@
 
   &--large {
     height: 40px;
+    .v-checkbox__inner {
+      width: 14px;
+      height: 14px;
+    }
+    .v-checkbox__label {
+      font-size: 14px;
+    }
   }
 
   &--small {
     height: 24px;
+    .v-checkbox__input {
+      .v-checkbox__inner {
+        width: 12px;
+        height: 12px;
+
+        &::after {
+          width: 2px;
+          height: 6px;
+        }
+      }
+      &.is-indeterminate {
+        .v-checkbox__inner {
+          &::before {
+            top: 4px;
+          }
+        }
+      }
+    }
+    .v-checkbox__label {
+      font-size: 12px;
+    }
   }
 
   &:last-of-type {
