@@ -1,18 +1,31 @@
+import { computed, getCurrentInstance, inject, ref } from 'vue'
+import { isArray } from '@vect-ui/utils'
 import { UPDATE_MODEL_EVENT } from '@vect-ui/constants'
-import { computed, getCurrentInstance, ref } from 'vue'
+
+import { checkboxGroupContextKey } from '../checkbox-group'
+
 import type { CheckboxProps } from '../checkbox'
 
 export const useCheckboxModel = (props: CheckboxProps) => {
   const innerModelValue = ref<unknown>(false)
+  const checkboxGroup = inject(checkboxGroupContextKey, undefined)
+  const isGroup = computed(() => typeof checkboxGroup !== 'undefined')
+
   const { emit } = getCurrentInstance()!
 
   const model = computed<any>({
     get() {
-      return props.modelValue ?? innerModelValue.value
+      return isGroup.value
+        ? checkboxGroup?.modelValue?.value
+        : props.modelValue ?? innerModelValue.value
     },
     set(val: unknown) {
-      emit(UPDATE_MODEL_EVENT, val)
-      innerModelValue.value = val
+      if (isGroup.value && isArray(val)) {
+        checkboxGroup?.changeEvent?.(val)
+      } else {
+        emit(UPDATE_MODEL_EVENT, val)
+        innerModelValue.value = val
+      }
     }
   })
 

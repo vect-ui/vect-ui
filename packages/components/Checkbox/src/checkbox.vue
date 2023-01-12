@@ -3,6 +3,7 @@
     <span :class="spanCls">
       <input
         v-model="model"
+        :value="label"
         type="checkbox"
         :class="ns.e('original')"
         :disabled="isDisabled"

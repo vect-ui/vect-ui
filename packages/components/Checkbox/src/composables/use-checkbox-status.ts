@@ -1,7 +1,8 @@
-import { computed, inject } from 'vue'
+import { computed, inject, toRaw } from 'vue'
 import { useDisabed, useSize } from '@vect-ui/hooks'
-import { isBoolean } from '@vect-ui/utils'
+import { isArray, isBoolean, isObject } from '@vect-ui/utils'
 import { checkboxGroupContextKey } from '../checkbox-group'
+import { isEqual } from 'lodash-es'
 
 import type { ComponentInternalInstance } from 'vue'
 import type { CheckboxProps } from '../checkbox'
@@ -19,6 +20,10 @@ export const useCheckboxStatus = (
     const val = model.value
     if (isBoolean(val)) {
       return val
+    } else if (isArray(val)) {
+      return isObject(props.label)
+        ? val.map(toRaw).some(o => isEqual(o, props.label))
+        : val.map(toRaw).includes(props.label)
     } else {
       return !!val
     }

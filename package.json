@@ -29,12 +29,14 @@
     "@vect-ui/hooks": "workspace:*",
     "@vect-ui/icons": "0.0.2-beta.0",
     "@vect-ui/styles": "workspace:*",
-    "@vect-ui/utils": "workspace:*"
+    "@vect-ui/utils": "workspace:*",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.2.0",
     "@commitlint/config-conventional": "^17.2.0",
     "@types/jsdom": "^20.0.1",
+    "@types/lodash-es": "^4.17.6",
     "@vect-ui/eslint-config": "workspace:*",
     "@vitejs/plugin-vue": "^3",
     "@vitejs/plugin-vue-jsx": "^2.1.1",
