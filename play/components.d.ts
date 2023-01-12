@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     VIcon: typeof import('vect-ui')['VIcon']
     VCheckbox: typeof import('vect-ui')['VCheckbox']
     VCheckBox: typeof import('vect-ui')['VCheckBox']
+    VCheckboxGroup: typeof import('vect-ui')['VCheckboxGroup']
     VStep: typeof import('vect-ui')['VStep']
     VSteps: typeof import('vect-ui')['VSteps']
   }

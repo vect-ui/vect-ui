@@ -3,6 +3,8 @@ import { useSizeProp } from '@vect-ui/hooks'
 import { isBoolean, isNumber, isString } from '@vect-ui/utils'
 import type { ExtractPropTypes } from 'vue'
 
+export type CheckboxValueType = string | number | boolean
+
 export const checkboxProps = {
   /**
    * @description binding value

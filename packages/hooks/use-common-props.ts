@@ -1,19 +1,20 @@
 import { computed, ref, unref } from 'vue'
 import { componentSizes } from '@vect-ui/constants'
 import { useProp } from './use-prop'
-import type { Ref } from 'vue'
+
+import type { PropType, Ref } from 'vue'
 import type { ComponentSize } from '@vect-ui/constants'
 
 type MaybeRef<T> = T | Ref<T>
 
 export const useSizeProp = {
-  type: String,
+  type: String as PropType<ComponentSize>,
   value: componentSizes,
   required: false
 }
 
 export const useSize = (
-  fallback?: ComponentSize | Ref<ComponentSize>,
+  fallback?: MaybeRef<ComponentSize | undefined>,
   ignore: Partial<Record<'prop', boolean>> = {}
 ) => {
   const emptyRef = ref()

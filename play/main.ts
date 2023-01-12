@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import '@vect-ui/styles'
 ;(async () => {
-  const apps = import.meta.glob<{ [key: string]: any }>('./*.vue')
+  const apps = import.meta.glob<{ [key: string]: any }>('./src/*.vue')
   const name = location.pathname.replace(/^\//, '') || 'App'
-  const file = apps[`./${name}.vue`]
+  const file = apps[`./src/${name}.vue`]
 
   if (!file) {
     location.pathname = 'App'

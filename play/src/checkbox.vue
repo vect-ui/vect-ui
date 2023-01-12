@@ -36,11 +36,21 @@
       <VCheckbox label="Checkbox" disabled />
       <VCheckbox label="Checkbox" checked disabled />
     </div>
-    <!-- size & indeterminate -->
+    <!-- size -->
     <div>
-      <VCheckbox size="small" indeterminate>Checkbox</VCheckbox>
+      <VCheckbox label="Checkbox" size="small" />
+      <VCheckbox label="Checkbox" indeterminate size="small" />
+      <VCheckbox label="Checkbox" checked size="small" />
+      <VCheckbox label="Checkbox" />
+      <VCheckbox label="Checkbox" size="large" />
+      <VCheckbox label="Checkbox" indeterminate size="large" />
+      <VCheckbox label="Checkbox" checked size="large" />
+    </div>
+    <!-- indeterminate -->
+    <div>
+      <VCheckbox indeterminate>Checkbox</VCheckbox>
       <VCheckbox disabled indeterminate>Checkbox</VCheckbox>
-      <VCheckbox indeterminate checked size="large">Checkbox</VCheckbox>
+      <VCheckbox indeterminate checked>Checkbox</VCheckbox>
     </div>
     <!-- indeterminate control -->
     <div>
