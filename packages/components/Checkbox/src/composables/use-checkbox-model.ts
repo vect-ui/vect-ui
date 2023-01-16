@@ -10,6 +10,7 @@ export const useCheckboxModel = (props: CheckboxProps) => {
   const innerModelValue = ref<unknown>(false)
   const checkboxGroup = inject(checkboxGroupContextKey, undefined)
   const isGroup = computed(() => typeof checkboxGroup !== 'undefined')
+  const isLimitExceeded = ref(false)
 
   const { emit } = getCurrentInstance()!
 
@@ -21,7 +22,9 @@ export const useCheckboxModel = (props: CheckboxProps) => {
     },
     set(val: unknown) {
       if (isGroup.value && isArray(val)) {
-        checkboxGroup?.changeEvent?.(val)
+        isLimitExceeded.value =
+          checkboxGroup?.max?.value !== undefined && val.length > checkboxGroup?.max.value
+        isLimitExceeded.value === false && checkboxGroup?.changeEvent?.(val)
       } else {
         emit(UPDATE_MODEL_EVENT, val)
         innerModelValue.value = val
@@ -30,7 +33,8 @@ export const useCheckboxModel = (props: CheckboxProps) => {
   })
 
   return {
-    model
+    model,
+    isLimitExceeded
   }
 }
 

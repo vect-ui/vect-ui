@@ -5,9 +5,10 @@
 </template>
 
 <script lang="ts" setup name="VCheckboxGroup">
-  import { computed, provide, toRef } from 'vue'
+  import { computed, provide, toRef, toRefs } from 'vue'
   import { UPDATE_MODEL_EVENT } from '@vect-ui/constants'
   import { checkboxGroupContextKey, checkboxGroupEmits, checkboxGroupProps } from './checkbox-group'
+  import { pick } from 'lodash-es'
 
   import type { CheckboxGroupValueType } from './checkbox-group'
 
@@ -30,7 +31,6 @@
   provide(checkboxGroupContextKey, {
     modelValue,
     changeEvent,
-    disabled: toRef(props, 'disabled'),
-    size: toRef(props, 'size')
+    ...pick(toRefs(props), ['min', 'max', 'disabled', 'size'])
   })
 </script>

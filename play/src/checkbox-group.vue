@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed, reactive, ref } from 'vue'
 
-  const checked = ref(['A', 'Selected and disabled'])
+  const checked = ref(['A', 'C', 'Selected and disabled'])
 </script>
 
 <template>
@@ -16,12 +16,22 @@
     </div>
 
     <!-- v-model -->
-    <div>
+    <!-- <div>
       {{ checked }}
       <VCheckboxGroup v-model="checked">
         <VCheckbox label="A" />
-        <VCheckbox label="B">BBB</VCheckbox>
-        <VCheckbox label="C" disabled />
+        <VCheckbox :label="{ b: 1 }">BBB</VCheckbox>
+        <VCheckbox label="C" />
+        <VCheckbox label="Selected and disabled" disabled>Selected and disabled</VCheckbox>
+      </VCheckboxGroup>
+    </div> -->
+
+    <!-- max & min -->
+    <div>
+      <VCheckboxGroup v-model="checked" :min="1" :max="3">
+        <VCheckbox label="A" />
+        <VCheckbox :label="{ b: 1 }">BBB</VCheckbox>
+        <VCheckbox label="C" />
         <VCheckbox label="Selected and disabled">Selected and disabled</VCheckbox>
       </VCheckboxGroup>
     </div>

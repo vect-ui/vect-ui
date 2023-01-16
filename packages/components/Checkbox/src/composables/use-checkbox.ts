@@ -18,11 +18,13 @@ const setDefaultValue = (props: CheckboxProps, model: WritableComputedRef<unknow
 }
 
 export const useCheckbox = (props: CheckboxProps, slots: ComponentInternalInstance['slots']) => {
-  const { model } = useCheckboxModel(props)
+  const { model, isLimitExceeded } = useCheckboxModel(props)
   const { isChecked, isDisabled, checkboxSize, hasOwnLabel } = useCheckboxStatus(props, slots, {
     model
   })
-  const { handleChange } = useCheckboxEvent()
+  const { handleChange } = useCheckboxEvent({
+    isLimitExceeded
+  })
 
   setDefaultValue(props, model)
 

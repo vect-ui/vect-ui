@@ -8,7 +8,7 @@ import type { CheckboxValueType } from './checkbox'
 type CheckboxGroupContext = {
   modelValue: WritableComputedRef<any>
   changeEvent: (...args: any[]) => void
-} & ToRefs<Pick<CheckboxGroupProps, 'disabled' | 'size'>>
+} & ToRefs<Pick<CheckboxGroupProps, 'disabled' | 'size' | 'min' | 'max'>>
 export const checkboxGroupContextKey: InjectionKey<CheckboxGroupContext> =
   Symbol('checkboxGroupContextKey')
 
@@ -29,7 +29,15 @@ export const checkboxGroupProps = {
   /**
    * @description size of the Checkbox
    */
-  size: useSizeProp
+  size: useSizeProp,
+  /**
+   * @description minimum number of checkbox checked
+   */
+  min: Number,
+  /**
+   * @description maximum number of checkbox checked
+   */
+  max: Number
 }
 
 export const checkboxGroupEmits = {
