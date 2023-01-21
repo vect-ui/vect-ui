@@ -1,9 +1,9 @@
 {
   "name": "@vect-ui/utils",
-  "private": true,
   "version": "0.0.1",
+  "private": true,
   "description": "vect-ui utils",
+  "license": "MIT",
   "main": "index.ts",
-  "module": "index.ts",
-  "license": "MIT"
+  "module": "index.ts"
 }

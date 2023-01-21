@@ -12,10 +12,10 @@ const rewriteAlias = code => {
 }
 
 const rewrite = async dirName => {
-  let _files = await fs.readdir(dirName, {
+  const _files = await fs.readdir(dirName, {
     recursive: true
   })
-  return await Promise.all(
+  await Promise.all(
     _files.map(async file => {
       const newFile = resolve(dirName, file)
       const status = await fs.stat(newFile)
@@ -47,7 +47,7 @@ const transform = async () => {
   const fromDir = resolve(outDir, 'packages/vect-ui')
   const toDir = outDir
 
-  let dir = await fs.readdir(fromDir, {
+  const dir = await fs.readdir(fromDir, {
     recursive: true
   })
 
