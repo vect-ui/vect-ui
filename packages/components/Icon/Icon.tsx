@@ -10,7 +10,7 @@ export default defineComponent({
       default: () => ({})
     },
     icon: {
-      type: Function as PropType<(p?: ISvgIconProps) => string>,
+      type: Function as PropType<(props: ISvgIconProps) => string>,
       default: () => ({})
     },
     className: {

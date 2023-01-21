@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VButton: typeof import('vect-ui')['VButton']
+    VIcon: typeof import('vect-ui')['VIcon']
     VStep: typeof import('vect-ui')['VStep']
     VSteps: typeof import('vect-ui')['VSteps']
   }
