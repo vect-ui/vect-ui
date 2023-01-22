@@ -1,23 +1,39 @@
 import { computed, defineComponent, nextTick, onMounted, ref, shallowRef, watch } from 'vue'
 import { useNamespace } from '@vect-ui/utils'
 import VIcon from '../Icon'
-import { CloseOne } from '@vect-ui/icons'
+import { CloseOne, PreviewCloseOne, PreviewOpen } from '@vect-ui/icons'
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
 
 export default defineComponent({
   props: {
     disabled: {
       type: Boolean,
+      required: false,
       default: false
     },
-    // TODO: how to write union type
     modelValue: {
-      type: String,
+      type: [String, Number],
       required: false
     },
     allowClear: {
       type: Boolean,
-      required: false
+      required: false,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      requied: false,
+      default: ''
+    },
+    password: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    showCount: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   emits: [
@@ -31,10 +47,13 @@ export default defineComponent({
     'mouseleave'
   ],
   setup(props, { emit, attrs, slots }) {
+    const iconConfig = { fill: '#d9d9d9', size: 14 }
+
     const ns = useNamespace('input')
 
     const focused = ref<boolean>(false)
     const hovering = ref<boolean>(false)
+    const isPasswordVisble = ref<boolean>(false)
     const input = shallowRef<HTMLInputElement>()
 
     const _ref = computed(() => input.value)
@@ -48,7 +67,15 @@ export default defineComponent({
       }
     ])
     const inputModelValue = computed(() => String(props.modelValue))
+    const modelValueLength = computed(() => Array.from(inputModelValue.value).length)
+
+    const showSuffix = computed(
+      () => showClearIcon.value || slots.suffix || props.showCount || props.password
+    )
     const showClearIcon = computed(() => props.allowClear && inputModelValue.value)
+    const showPasswordIcon = computed(() => props.password && inputModelValue.value)
+    const showCount = computed(() => props.showCount && !!attrs.maxlength)
+
     const setNativeInputValue = () => {
       const input = _ref.value
       if (!input || input.value === inputModelValue.value) return
@@ -90,6 +117,9 @@ export default defineComponent({
       emit('input', '')
     }
 
+    const handlePasswordVisble = () => {
+      isPasswordVisble.value = !isPasswordVisble.value
+    }
     watch(inputModelValue, () => {
       setNativeInputValue()
     })
@@ -106,8 +136,8 @@ export default defineComponent({
           <input
             ref={input}
             disabled={props.disabled}
-            type="text"
-            placeholder="demo"
+            type={props.password ? (isPasswordVisble.value ? 'text' : 'password') : 'text'}
+            placeholder={props.placeholder}
             class={ns.e('inner')}
             onInput={handleInput}
             onChange={handleChange}
@@ -115,14 +145,22 @@ export default defineComponent({
             onBlur={handleBlur}
             {...attrs}
           ></input>
-          {(showClearIcon.value || slots.suffix) && (
+          {showSuffix.value && (
             <div class={ns.e('suffix')}>
               {showClearIcon.value && (
+                <VIcon icon={CloseOne} iconConfig={iconConfig} onClick={handleClear}></VIcon>
+              )}
+              {showPasswordIcon.value && (
                 <VIcon
-                  icon={CloseOne}
-                  iconConfig={{ fill: '#d9d9d9', size: 12 }}
-                  onClick={handleClear}
+                  iconConfig={iconConfig}
+                  icon={isPasswordVisble.value ? PreviewCloseOne : PreviewOpen}
+                  onClick={handlePasswordVisble}
                 ></VIcon>
+              )}
+              {showCount.value && (
+                <span class={ns.e('count')}>
+                  {`${modelValueLength.value} / ${attrs.maxlength} `}
+                </span>
               )}
               {slots.suffix && slots.suffix()}
             </div>
