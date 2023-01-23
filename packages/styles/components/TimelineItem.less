@@ -1,0 +1,72 @@
+@timeline-prefix-cls: v-timeline-item;
+
+.@{timeline-prefix-cls} {
+  position: relative;
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 14px;
+  list-style: none;
+
+  &:last-child &__tail {
+    display: none;
+  }
+  &__tail {
+    position: absolute;
+    top: 10px;
+    left: -4px;
+    height: calc(100% - 10px);
+    border-left: 2px solid @v-fill-color;
+  }
+  &__dot {
+    position: absolute;
+    left: -4px;
+    &--custom {
+      top: 5.5px;
+      margin-left: 1px;
+      width: auto;
+      height: auto;
+      margin-top: 0;
+      padding: 3px 1px;
+      line-height: 1;
+      text-align: center;
+      border: 0;
+      border-radius: 0;
+      transform: translate(-50%, -50%);
+    }
+    &--default {
+      margin-left: -4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 100px;
+      background-color: #fff;
+      border: 2px solid transparent;
+      color: @v-color-primary;
+      border-color: @v-color-primary;
+    }
+  }
+  &__content {
+    position: relative;
+    margin: 0 0 0 26px;
+    word-break: break-word;
+  }
+  &--left {
+    .@{timeline-prefix-cls}__content {
+      width: calc(50% - 12px);
+      margin: 0;
+    }
+  }
+
+  &--right {
+    .@{timeline-prefix-cls}__content {
+      left: calc(50% - 4px);
+      width: calc(50% - 14px);
+      text-align: left;
+    }
+  }
+
+  &--left,&--right { 
+    .@{timeline-prefix-cls}__tail,.@{timeline-prefix-cls}__dot{
+      left:50%;
+    }
+  }
+}
