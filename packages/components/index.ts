@@ -6,6 +6,7 @@ export * from './Breadcrumb'
 export * from './Steps'
 export * from './RadioGroup'
 export * from './Radio'
-
+export * from './Input'
 export * from './Timeline'
 export * from './TimelineItem'
+

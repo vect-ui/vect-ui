@@ -1,0 +1,139 @@
+.placeholder(@color: @v-text-color-placeholder) {
+  // Firefox
+  /* stylelint-disable-next-line selector-no-vendor-prefix */
+  &::-moz-placeholder {
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+
+  &::placeholder {
+    color: @color;
+    user-select: none; // https://github.com/ant-design/ant-design/pull/32639
+  }
+
+  &:placeholder-shown {
+    text-overflow: ellipsis;
+  }
+}
+
+.v-input {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.5715;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &-group {
+    display: inline-flex;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  &__wrapper {
+    padding: 1px 11px;
+    display: inline-flex;
+    transition: all 0.3s;
+    border-radius: 2px;
+    border: 1px solid @v-border-color;
+    background-color: @v-bg-color;
+    width: 100%;
+    background-image: none;
+
+    &:hover {
+      border-color: @v-color-primary-light-3;
+    }
+    &:focus-within {
+      border-color: @v-color-primary-dark-2;
+      box-shadow: 0 0 0 1px @v-color-primary-light-7;
+    }
+  }
+
+  &.is-disabled {
+    background-color: @v-disabled-bg-color;
+    border-color: @v-border-color;
+    box-shadow: none;
+  }
+
+  &__inner {
+    padding: 0;
+    height: 24px;
+    width: 100%;
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    background: none;
+    color: @v-text-color-regular;
+    .placeholder();
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__prefix,
+  &__suffix {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__prefix > :last-child {
+    margin-right: 6px;
+  }
+
+  &__suffix > :first-child {
+    margin-left: 6px;
+  }
+
+  &__prepend {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    border-radius: 2px;
+    padding: 0 20px;
+    white-space: nowrap;
+    border: 1px solid @v-border-color;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  &__append {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    border-radius: 2px;
+    padding: 0 20px;
+    white-space: nowrap;
+    border: 1px solid @v-border-color;
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  &-group--append > &__wrapper {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &-group--prepend > &__wrapper {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .v-icon + .v-icon {
+    margin-left: 2px;
+  }
+
+  &__count {
+    height: 100%;
+    display: inline-flex;
+    white-space: nowrap;
+    align-items: center;
+    color: #d9d9d9;
+    font-size: 12px;
+  }
+}
