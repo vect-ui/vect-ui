@@ -9,6 +9,7 @@ import { VRadio } from '@vect-ui/components/Radio'
 import { VRadioGroup } from '@vect-ui/components/RadioGroup'
 import { VStep, VSteps } from '@vect-ui/components/Steps'
 import { VCheckbox, VCheckboxGroup } from '@vect-ui/components/Checkbox'
+import { VInput } from '@vect-ui/components/Checkbox'
 
 export default [
   VButton,
@@ -22,4 +23,5 @@ export default [
   VStep,
   VCheckbox,
   VCheckboxGroup
+  VInput
 ] as Plugin[]

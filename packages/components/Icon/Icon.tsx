@@ -1,3 +1,4 @@
+import { useNamespace } from '@vect-ui/utils'
 import type { PropType } from 'vue'
 import { computed, defineComponent, toRefs } from 'vue'
 import type { ISvgIconProps } from './types'
@@ -19,17 +20,18 @@ export default defineComponent({
     },
     size: {
       type: Number,
-      default: 14
+      requied: false
     }
   },
-  setup(props, { slots, attrs }) {
-    const { icon, className, iconConfig, size } = toRefs(props)
-
-    const cmpClass = computed(() => ['t-icon', className.value].flat())
-
+  setup(props, { slots }) {
+    const ns = useNamespace('icon')
+    const { icon, className, iconConfig } = toRefs(props)
+    const cmpClass = computed(() => [ns.b(), className.value].flat())
+    const config = computed(() =>
+      Object.assign({}, iconConfig.value, props.size ? { size: props.size } : {})
+    )
     return () => (
-      <i class={cmpClass.value} {...attrs}>
-        <span style={{ fontSize: `${size.value}px` }} v-html={icon.value(iconConfig.value)}></span>
+      <i class={cmpClass.value} v-html={icon.value(config.value)}>
         {slots.default?.()}
       </i>
     )

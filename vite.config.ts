@@ -5,9 +5,26 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
 
 const rootDirName = resolve(__dirname, 'packages/vect-ui')
-
 const compDirName = resolve(__dirname, 'packages/components')
 const utilsDirName = resolve(__dirname, 'packages/utils')
+const getManualChunks = (id: string) => {
+  if (id.includes('node_modules')) {
+    return 'vendor'
+  }
+  /**
+   * return: /xxxxx/xxxxx
+   * need: xxxxx/xxxxx
+   */
+  // 主包需平铺，特判
+  if (id.includes('/packages/vect-ui')) {
+    return id.replace(/.+packages\/vect-ui((\/[A-Za-z0-9-_]+)+).+/, (_, $1) => {
+      return $1.slice(1)
+    })
+  }
+  return id.replace(/.+packages((\/[A-Za-z0-9-_]+)+).+/, (_, $1) => {
+    return $1.slice(1)
+  })
+}
 
 export default defineConfig({
   resolve: {
@@ -43,24 +60,7 @@ export default defineConfig({
           entryFileNames: 'index.mjs',
           chunkFileNames: '[name].mjs',
           // 自定义chunk文件目录,文件名
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor'
-            }
-            /**
-             * return: /xxxxx/xxxxx
-             * need: xxxxx/xxxxx
-             */
-            // 主包需平铺，特判
-            if (id.includes('/packages/vect-ui')) {
-              return id.replace(/.+packages\/vect-ui((\/[A-Za-z0-9-_]+)+).+/, (_, $1) => {
-                return $1.slice(1)
-              })
-            }
-            return id.replace(/.+packages((\/[A-Za-z0-9-_]+)+).+/, (_, $1) => {
-              return $1.slice(1)
-            })
-          }
+          manualChunks: getManualChunks
         },
         {
           format: 'cjs',
@@ -71,24 +71,7 @@ export default defineConfig({
           entryFileNames: 'index.js',
           chunkFileNames: '[name].js',
           // 自定义chunk文件目录,文件名
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor'
-            }
-            /**
-             * return: /xxxxx/xxxxx
-             * need: xxxxx/xxxxx
-             */
-            // 主包需平铺，特判
-            if (id.includes('/packages/vect-ui')) {
-              return id.replace(/.+packages\/vect-ui((\/[A-Za-z0-9-_]+)+).+/, (_, $1) => {
-                return $1.slice(1)
-              })
-            }
-            return id.replace(/.+packages((\/[A-Za-z0-9-_]+)+).+/, (_, $1) => {
-              return $1.slice(1)
-            })
-          }
+          manualChunks: getManualChunks
         }
       ]
     }
